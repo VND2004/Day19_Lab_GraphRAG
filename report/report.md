@@ -118,12 +118,30 @@ Supporting triples used: 46 triples
 
 ### 3.2 Benchmark Results
 
-Dữ liệu benchmark hiện tại là một đợt chạy nhanh với 2 câu hỏi mẫu, nên chưa phải bộ test đầy đủ 20 câu. Bảng dưới đây phản ánh đúng kết quả trong `outputs/benchmark_results.csv`.
+Kết quả benchmark so sánh GraphRAG vs Flat RAG (20 câu hỏi). Bảng dưới đây trích từ `outputs/benchmark_results.csv`:
 
-| ID | Câu hỏi | GraphRAG | Flat RAG | Graph Triples Used | Flat RAG Chunks Used | Nhận xét |
-|----|---------|----------|----------|-------------------:|---------------------:|---------|
-| 1 | Who founded OpenAI? | No matching entities found in knowledge graph. | The context does not provide the names of the individuals who founded OpenAI. | 0 | 3 | Cả hai đều không xác định được người sáng lập từ run này; Flat RAG trả lời tự nhiên hơn. |
-| 2 | What is the relationship between Microsoft and OpenAI? | Microsoft is a key investor, strategic partner, and major shareholder of OpenAI. | Microsoft has made substantial financial investments in OpenAI and provides Azure cloud resources. | 46 | 3 | GraphRAG gom nhiều triple hơn và thể hiện traceability tốt hơn. |
+| ID | Question | GraphRAG Answer | Flat RAG Answer | Graph Triples Used | Flat RAG Chunks Used | Notes |
+|----|----------|-----------------|-----------------|-------------------:|---------------------:|-------|
+| 1 | Who founded OpenAI? | No matching entities found in knowledge graph. | The provided context does not include the names of the individuals who founded OpenAI. | 0 | 3 |  |
+| 2 | What is the relationship between Microsoft and OpenAI? | Microsoft is a major investor and partner of OpenAI.  According to the context, Microsoft has invest | Microsoft is a major investor and strategic partner of OpenAI. It has invested more than $13 billion, | 46 | 3 |  |
+| 3 | Which company invested in OpenAI? | The companies that have invested in OpenAI, according to the provided context, are:  - SoftBank   - | The company that invested in OpenAI is **Microsoft**. | 44 | 3 |  |
+| 4 | Which company provides cloud resources to OpenAI? | No matching entities found in knowledge graph. | The cloud resources for OpenAI are provided by **Microsoft** (via its Azure cloud platform). | 0 | 3 |  |
+| 5 | What products did OpenAI develop? | No matching entities found in knowledge graph. | The provided context does not list or describe any specific products that OpenAI has developed. Ther | 0 | 3 |  |
+| 6 | Who is the CEO of OpenAI? | No matching entities found in knowledge graph. | The current CEO of OpenAI, according to the information provided, is **Mira Murati** (serving in an | 0 | 3 |  |
+| 7 | What is the relationship between Google and Alphabet? | I’m sorry, but the provided context does not contain any information about the relationship between | The provided context does not contain any information about the relationship between Google and Alph | 0 | 3 |  |
+| 8 | Who owns Google? | No matching entities found in knowledge graph. | The provided context does not contain any information about the ownership of Google. | 0 | 3 |  |
+| 9 | What technology does NVIDIA develop? | The provided context does not contain any information about the specific technologies that NVIDIA de | NVIDIA develops GPU technology—specifically high‑performance graphics processing units that are used | 3 | 3 |  |
+| 10 | Which company uses Tensor Processing Units (TPUs)? | The company that uses Tensor Processing Units (TPUs) is **OpenAI**. | The company that uses Tensor Processing Units (TPUs) is **OpenAI**. | 6 | 3 |  |
+| 11 | What are the main business areas of Qualcomm? | No matching entities found in knowledge graph. | The context provided does not contain any information about Qualcomm or its business areas. Therefor | 0 | 3 |  |
+| 12 | Where is Qualcomm headquartered? | No matching entities found in knowledge graph. | The provided context does not contain any information about Qualcomm or its headquarters. | 0 | 3 |  |
+| 13 | What products or technologies is Qualcomm associated with? | No matching entities found in knowledge graph. | The provided context does not mention Qualcomm or any products or technologies associated with Qualc | 0 | 3 |  |
+| 14 | What is Vingroup's main business? | No matching entities found in knowledge graph. | The provided context does not contain any information about Vingroup or its business activities. The | 0 | 3 |  |
+| 15 | Which sectors does Vingroup operate in? | No matching entities found in knowledge graph. | The provided context does not contain any information about Vingroup or the sectors in which it oper | 0 | 3 |  |
+| 16 | What services does Viettel provide? | No matching entities found in knowledge graph. | I’m sorry, but the provided context does not contain any information about Viettel or the services i | 0 | 3 |  |
+| 17 | In which markets or countries does Viettel expand? | No matching entities found in knowledge graph. | The provided context does not contain any information about Viettel or the markets or countries in w | 0 | 3 |  |
+| 18 | Which company in the corpus is linked to AI and cloud infrastructure? | No matching entities found in knowledge graph. | The company in the corpus that is linked to both AI and cloud infrastructure is | 0 | 3 |  |
+| 19 | Which company partners with OpenAI besides Microsoft? | No matching entities found in knowledge graph. | The context does not mention any partner of OpenAI other than Microsoft. | 0 | 3 |  |
+| 20 | What company developed ChatGPT? | No matching entities found in knowledge graph. | The company that developed ChatGPT is **OpenAI**. | 0 | 3 |  |
 
 ### 3.3 Tính toán sai số
 
