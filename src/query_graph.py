@@ -11,6 +11,7 @@ from collections import deque
 import networkx as nx
 from openai import OpenAI
 from dotenv import load_dotenv
+from question_bank import load_benchmark_questions
 
 # Load .env file
 load_dotenv()
@@ -237,13 +238,7 @@ def main():
         print("FAST_MODE is enabled")
     print(f"MAX_HOPS={max_hops}")
 
-    test_questions = [
-        "Who founded OpenAI?",
-        "What is the relationship between Microsoft and OpenAI?",
-        "What products did OpenAI develop?",
-        "Who owns Google?",
-        "What technology does NVIDIA develop?",
-    ]
+    test_questions = load_benchmark_questions()
     question_limit = _get_env_int("QUESTION_LIMIT", 3 if fast_mode else len(test_questions))
     test_questions = test_questions[: max(1, question_limit)]
 

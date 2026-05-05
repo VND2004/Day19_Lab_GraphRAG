@@ -6,6 +6,20 @@ import sys
 import os
 import subprocess
 
+
+def get_start_step() -> int:
+    """Determine which pipeline step to start from."""
+    if os.getenv("START_STEP"):
+        try:
+            return max(1, int(os.getenv("START_STEP", "1")))
+        except ValueError:
+            return 1
+
+    if os.getenv("SKIP_STEP_1", "0") == "1":
+        return 2
+
+    return 1
+
 def run_step(script_name: str, description: str):
     """Run a Python script and catch errors."""
     print("\n" + "="*60)
@@ -39,6 +53,12 @@ def main():
         ("flat_rag.py", "4. Flat RAG Baseline"),
         ("benchmark.py", "5. Compare & Benchmark Results"),
     ]
+
+    start_step = get_start_step()
+    if start_step > 1:
+        print(f"Starting from step {start_step}; skipping earlier steps.")
+
+    steps = steps[start_step - 1 :]
     
     success_count = 0
     for script, description in steps:

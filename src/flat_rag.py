@@ -11,6 +11,7 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 from openai import OpenAI
 from dotenv import load_dotenv
+from question_bank import load_benchmark_questions
 
 # Load .env file
 load_dotenv()
@@ -177,13 +178,7 @@ def main():
     print("\nBuilding ChromaDB vector store...")
     collection = build_vector_store(chunks)
 
-    test_questions = [
-        "Who founded OpenAI?",
-        "What is the relationship between Microsoft and OpenAI?",
-        "What products did OpenAI develop?",
-        "Who owns Google?",
-        "What technology does NVIDIA develop?",
-    ]
+    test_questions = load_benchmark_questions()
     question_limit = _get_env_int("QUESTION_LIMIT", 3 if fast_mode else len(test_questions))
     test_questions = test_questions[: max(1, question_limit)]
 
