@@ -171,17 +171,30 @@ Trong lần chạy này chưa có ground truth chuẩn để tính accuracy chí
 
 ## 5. Chi phí và Performance
 
-Pipeline đã được chạy ở chế độ tối ưu nhanh, nên thông số timing/token chưa được đo đầy đủ trong log hiện tại. Vì vậy phần này ghi nhận ở mức định tính.
+Dưới đây là phân tích ngắn gọn giả định để ước lượng cost/time khi xây graph từ corpus hiện tại (5 tài liệu → 1912 chunks):
 
-| Metric | GraphRAG | Flat RAG | Ghi chú |
-|--------|----------|----------|---------|
-| Thời gian indexing (s) | N/A | N/A | Chưa benchmark thời gian chi tiết |
-| Token dùng indexing | N/A | N/A | Chưa log token usage |
-| Thời gian truy vấn trung bình (s) | N/A | N/A | Chưa benchmark chi tiết |
-| Token dùng truy vấn trung bình | N/A | N/A | Chưa log token usage |
-| Tổng chi phí | N/A | N/A | Không đủ dữ liệu để quy đổi chi phí |
+- Corpus & calls: 1912 chunks; mỗi chunk gửi 1 request LLM cho bước extraction (prompt + response).
 
----
+- Token usage (extraction): giả sử mỗi request tiêu thụ trung bình 200–800 tokens (prompt + response). Tổng ước tính: ~1912 * 200 = ~382k tokens (thấp) đến ~1912 * 800 = ~1.53M tokens (cao).
+
+- Thời gian (extraction): nếu latency trung bình mỗi request với NVIDIA LLM là 1.5–3.0s, tổng thời gian IO ≈ 1912 * 1.5s = ~48 min (tối ưu) đến 1912 * 3s = ~96 min (chậm). Thêm thời gian xử lý cục bộ (parsing, ghi file) ~ vài phút.
+
+- Embedding cost: trong pipeline hiện tại dùng `sentence-transformers` local (không tính token phí). Nếu dùng dịch vụ embedding cloud thì sẽ phát sinh thêm chi phí theo số tokens tương ứng với tổng kích thước chunks.
+
+- Graph construction (NetworkX): chi phí CPU/Memory thấp — thường hoàn tất trong vài giây đến vài phút với 475 nodes và 64 edges trên máy dev.
+
+- Querying (20 câu hỏi benchmark):
+  - GraphRAG: mỗi câu thường cần 1 request synthesis (tổng hợp) + có thể 1 request để trích entity → 500–1500 tokens/câu → tổng ~10k–30k tokens.
+  - Flat RAG: mỗi câu thường kèm context nhiều chunk, 1–2 requests → 1000–2500 tokens/câu → tổng ~20k–50k tokens.
+  - Latency cho 20 câu: thường vài chục giây đến vài phút, phụ thuộc model và paralellism.
+
+- Tổng ước tính (khoảng): nếu tính cả extraction + 20 câu hỏi, tổng token có thể dao động ~0.4M – 1.6M tokens (chủ yếu từ bước extraction). Nếu bạn tính theo tiền, nhân số token này với đơn giá model để ra chi phí tiền tệ.
+
+Giảm chi phí / Tối ưu hóa:
+- Bật `FAST_MODE` hoặc tăng kích thước chunk để giảm số request LLM.
+- Dùng model nhỏ hơn (hoặc local model) cho bước extraction; chỉ dùng model lớn cho synthesis cuối cùng.
+- Cache kết quả extraction/embeddings và chỉ chạy lại những chunk mới.
+- Batch nhiều đoạn văn vào một request khi phù hợp để giảm overhead.
 
 ## 6. Kết luận
 
