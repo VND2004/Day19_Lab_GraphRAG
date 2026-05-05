@@ -1,0 +1,12 @@
+# Core dependencies
+networkx>=3.0
+matplotlib>=3.7.0
+openai>=1.0.0
+pandas>=2.0.0
+
+# Vector store & embeddings (for Flat RAG baseline)
+chromadb>=0.3.21
+sentence-transformers>=2.2.0
+
+# Optional: For environment variables
+python-dotenv>=1.0.0

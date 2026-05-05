@@ -1,0 +1,25 @@
+OpenAI was founded in 2015 by Sam Altman, Greg Brockman, Ilya Sutskever, John Schulman, Wojciech Zaremba, and Elon Musk as a non-profit research organization.
+Microsoft invested in OpenAI and integrated OpenAI models into Azure Cloud services.
+Google is owned by Alphabet Inc. and developed Gemini as a multimodal AI assistant.
+NVIDIA develops GPUs that are widely used for training and inference of large language models.
+Meta developed Llama and released several open-weight language models to the research community.
+Sam Altman is the CEO of OpenAI and previously worked at Y Combinator as president.
+Elon Musk is the CEO of Tesla and SpaceX, and co-founded OpenAI with Sam Altman.
+Satya Nadella is the CEO of Microsoft and has led the company's AI transformation strategy.
+Sundar Pichai is the CEO of Google and oversees the development of Gemini.
+Jensen Huang is the CEO and founder of NVIDIA, driving GPU technology for AI.
+ChatGPT is a conversational AI product developed by OpenAI and launched in November 2022.
+GitHub Copilot uses OpenAI's Codex model and is owned by Microsoft.
+Azure is Microsoft's cloud platform that provides AI services powered by OpenAI models.
+CUDA is NVIDIA's parallel computing platform used for deep learning and scientific computing.
+Y Combinator invested in OpenAI during its early stages and mentored the company.
+OpenAI released GPT-4, a large language model that powers ChatGPT Pro and various enterprise applications.
+Tesla developed Autopilot, an autonomous driving system powered by neural networks.
+Google Cloud provides AI services including Vertex AI for machine learning workflows.
+Meta's LLaMA models are used by researchers and companies for fine-tuning custom AI applications.
+Amazon Web Services (AWS) provides SageMaker for machine learning and competes with Azure and Google Cloud.
+OpenAI partnered with Microsoft to integrate GPT models into Office 365 and Teams.
+NVIDIA A100 GPUs are the standard for training large language models in data centers.
+DeepMind, owned by Alphabet, conducts AI research and developed AlphaGo and AlphaFold.
+Anthropic was founded by former members of OpenAI and develops Claude, an AI assistant.
+Google Search integrates AI features powered by Gemini for better query understanding.
