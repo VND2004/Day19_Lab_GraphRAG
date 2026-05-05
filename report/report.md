@@ -112,7 +112,7 @@ Supporting triples used: 46 triples
 
 ### 3.1 Đồ thị tri thức
 
-![Knowledge Graph](../outputs/graph.png)
+![Knowledge Graph](./Knowledge_Graph.png)
 
 Đồ thị cho thấy corpus xoay quanh các thực thể trung tâm như OpenAI, Microsoft, Google, Nvidia và một số nhân vật như Sam Altman, Elon Musk. Đồ thị khá dày ở vùng quanh OpenAI và Microsoft, phản ánh số lượng quan hệ đầu tư, hợp tác và sở hữu. Tuy nhiên nhiều node phụ vẫn là ngày tháng, tên nguồn tin hoặc thực thể ít thông tin, nên graph còn khá nhiễu và chưa gọn.
 
